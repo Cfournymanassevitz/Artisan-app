@@ -12,8 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('stores', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->uuid('id');
+            $table->uuid('User_id');
+            $table->string('name');
+            $table->string('theme');
+            $table->longText('biography');
         });
     }
 
