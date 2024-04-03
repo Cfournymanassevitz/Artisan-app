@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::post('/product/add',[\App\Http\Controllers\ProductController::class,'store']);
+Route::get('/product/list',[\App\Http\Controllers\ProductController::class,'index']);
+
