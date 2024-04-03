@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
 
-            $table->uuid('id');
+            $table->uuid('id')->primary();
             $table->uuid('command_number');
             $table->uuid('user_id');
             $table->datetimes('date');
+            $table->timestamps();
 
         });
     }

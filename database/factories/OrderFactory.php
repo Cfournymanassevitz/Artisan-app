@@ -14,10 +14,13 @@ class OrderFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    protected $model = \App\Models\Order::class;
     public function definition(): array
     {
         return [
-            //
+            'user_id' => 1,
+            'status' => 'pending',
+            'total' => 0,
         ];
     }
 }
