@@ -53,26 +53,29 @@
 
 ### Documentation faire les migrations :
 
+1. Construire les tables à l’aide des migrations de Laravel : Utilisez les migrations de Laravel pour créer les tables dans votre base de données. Chaque migration représente une table avec ses colonnes et ses contraintes.
+
 Cette classe de migration doit être créée dans le répertoire database/migrations de votre projet Laravel. Lorsque vous exécutez la commande php artisan make:migration, Laravel génère automatiquement un fichier de migration dans ce répertoire.
 
 Voici les étapes pour créer cette classe de migration :
 
-1. Ouvrez votre terminal ou votre invite de commande.
+- Ouvrez votre terminal ou votre invite de commande.
 
-2. Assurez-vous d'être dans le répertoire racine de votre projet Laravel.
+- Assurez-vous d'être dans le répertoire racine de votre projet Laravel.
 
-3. Exécutez la commande suivante pour créer une nouvelle migration :
+- Exécutez la commande suivante pour créer une nouvelle migration :
 
 
 ** php artisan make:migration create_users_table.**
 
-Cela va créer un nouveau fichier de migration dans le répertoire database/migrations avec un nom comme yyyy_mm_dd_create_users_table.php, où yyyy, mm et dd représentent l'année, le mois et le jour de la création de la migration.
 
-Ouvrez le fichier de migration fraîchement créé dans le répertoire database/migrations.
 
-À l'intérieur de la méthode up(), vous pouvez définir les champs de votre table en utilisant les méthodes de la classe Blueprint, comme décrit précédemment.
+2. Créer les relations entre les tables dans les models : Définissez les relations entre les tables dans vos modèles en utilisant les fonctionnalités d'Eloquent ORM de Laravel. Par exemple, définissez les relations hasOne, hasMany, belongsTo, etc.
+Tu peux faire cela dans les models.
 
-Une fois que vous avez configuré votre migration, vous pouvez exécuter la commande php artisan migrate pour exécuter la migration et créer la table dans votre base de données. Assurez-vous de vérifier que votre base de données est correctement configurée dans le fichier .env de votre projet Laravel.
+
+3. Créer des données de test à l’aide des factories et des seeders : Utilisez les factories pour définir comment générer des données fictives pour chaque modèle. Ensuite, créez des seeders qui utilisent ces factories pour insérer les données fictives dans votre base de données.
+
 
 
 
