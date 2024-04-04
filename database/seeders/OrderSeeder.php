@@ -13,10 +13,7 @@ class OrderSeeder extends Seeder
      */
     public function run(): void
     {
-        Order::factory()->create([
-            'user_id' => 1,
-            'status' => 'pending',
-            'total' => 0,
-        ]);
+        Order::factory()->count(10)->create();
+
     }
 }
