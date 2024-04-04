@@ -16,8 +16,8 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->uuid('command_number');
             $table->uuid('user_id');
-            $table->datetimes('date');
-            $table->timestamps();
+            $table->dateTime('created_at')->nullable();
+            $table->dateTime('updated_at')->nullable();
 
         });
     }

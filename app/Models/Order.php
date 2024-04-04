@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Order extends Model
 {
@@ -15,9 +17,14 @@ class Order extends Model
         'date',
     ];
 
-    public function user(){
+    public function user(): HasOne {
 
-        return $this->belongsTo(User::class);
+        return $this->hasOne(User::class);
     }
+    public function products(): BelongsToMany {
 
+
+        return $this->belongsToMany(Product::class);
+
+    }
 }
