@@ -3,24 +3,22 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Order;
+use Faker\Generator as Faker;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Order>
- */
+
 class OrderFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    protected $model = \App\Models\Order::class;
+    protected $model = Order::class;
+
     public function definition(): array
     {
         return [
-            'user_id' => 1,
-            'status' => 'pending',
-            'total' => 0,
+            'id' => $this->faker->uuid,
+            'command_number' => $this->faker->uuid,
+            'user_id' => $this->faker->uuid,
+            'created_at' => $this->faker->dateTimeBetween('-2 years', 'now'),
+            'updated_at' => $this->faker->dateTimeBetween('-2 years', 'now'),
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -14,10 +15,24 @@ class ProductFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    protected $model = Product::class;
     public function definition(): array
     {
         return [
-            //
+            'id' => $this->faker->uuid,
+            'name' => $this->faker->word,
+            'description' => $this->faker->sentence,
+            'story' => $this->faker->paragraph,
+            'price' => $this->faker->randomFloat(2, 10, 1000),
+            'quantity' => $this->faker->numberBetween(1, 100),
+            'image' => $this->faker->imageUrl(),
+            'material' => $this->faker->word,
+            'color' => $this->faker->colorName,
+            'size' => $this->faker->randomElement(['S', 'M', 'L', 'XL']),
+            'category' => $this->faker->word,
+            'shopId' => $this->faker->uuid,
+            'created_at' => $this->faker->dateTimeBetween('-2 years', 'now'),
+            'updated_at' => $this->faker->dateTimeBetween('-2 years', 'now'),
         ];
     }
 }
