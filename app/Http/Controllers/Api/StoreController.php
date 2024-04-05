@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Order;
-use App\Http\Requests\StoreOrderRequest;
-use App\Http\Requests\UpdateOrderRequest;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreStoreRequest;
+use App\Http\Requests\UpdateStoreRequest;
+use App\Models\Store;
 
-class OrderController extends Controller
+class StoreController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +28,7 @@ class OrderController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreOrderRequest $request)
+    public function store(StoreStoreRequest $request)
     {
         //
     }
@@ -35,7 +36,7 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Order $order)
+    public function show(Store $store)
     {
         //
     }
@@ -43,7 +44,7 @@ class OrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Order $order)
+    public function edit(Store $store)
     {
         //
     }
@@ -51,7 +52,7 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateOrderRequest $request, Order $order)
+    public function update(UpdateStoreRequest $request, Store $store)
     {
         //
     }
@@ -59,7 +60,7 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Order $order)
+    public function destroy(Store $store)
     {
         //
     }
