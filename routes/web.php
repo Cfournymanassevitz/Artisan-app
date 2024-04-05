@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ProfileController;
+use App\Http\Controllers\Api\userController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
