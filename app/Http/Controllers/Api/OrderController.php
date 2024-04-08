@@ -12,7 +12,7 @@ class OrderController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): \Illuminate\Database\Eloquent\Collection
     {
         return Order::all();
     }
