@@ -14,11 +14,8 @@ return new class extends Migration
         Schema::create('order__products', function (Blueprint $table) {
 
             $table->integer('quantity');
-            $table->uuid('order_id');
-            $table->uuid('product_id');
-
-
-
+            $table->foreignUuid('order_id')->references('id')->on('orders');
+            $table->foreignUuid('product_id')->references('id')->on('products');
         });
     }
 

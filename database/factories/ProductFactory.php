@@ -19,10 +19,10 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         return [
-            'id' => $this->faker->uuid,
+
             'name' => $this->faker->word,
             'description' => $this->faker->sentence,
-            'story' => $this->faker->paragraph,
+            'story' => $this->faker->sentence,
             'price' => $this->faker->randomFloat(2, 10, 1000),
             'quantity' => $this->faker->numberBetween(1, 100),
             'image' => $this->faker->imageUrl(),
@@ -34,3 +34,5 @@ class ProductFactory extends Factory
         ];
     }
 }
+
+//todo mettre use hasuuid dans le model et supp faker uuid dans la factory

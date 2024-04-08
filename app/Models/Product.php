@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -9,6 +11,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Product extends Model
 {
+    use HasFactory;
+    use HasUuids;
     public mixed $name;
     public mixed $price;
     public mixed $description;
@@ -27,7 +31,6 @@ class Product extends Model
         'shop_id',
     ];
 
-    use HasFactory;
     public function orders(): BelongsToMany {
 
 

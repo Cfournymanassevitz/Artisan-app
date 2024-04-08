@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -12,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  */
 class Store extends Model
 {
+    use HasUuids;
     public mixed $name;
     public mixed $theme;
     public mixed $biography;

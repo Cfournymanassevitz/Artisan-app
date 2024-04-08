@@ -21,7 +21,7 @@ class StoreFactory extends Factory
     public function definition(): array
     {
         return [
-            'id' => $this->faker->uuid,
+
             'user_id' => \App\Models\User::inRandomOrder()->first()->id, // select an existing user id
             'name' => $this->faker->company,
             'theme' => $this->faker->colorName,

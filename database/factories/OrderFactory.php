@@ -17,7 +17,7 @@ class OrderFactory extends Factory
         $user = User::all()->first();
 
         return [
-            'id' => $this->faker->uuid,
+
             'command_number' => $this->faker->uuid,
             'user_id' => $user->id, // Get the first user id (if any
             'created_at' => $this->faker->dateTimeBetween('-2 years', 'now'),

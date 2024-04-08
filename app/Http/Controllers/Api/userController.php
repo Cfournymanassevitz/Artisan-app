@@ -61,10 +61,11 @@ class userController extends Controller
      * @param Store $store
      * @param $id
      */
-    public function update(UpdateStoreRequest $request, Store $store, $id): void
+    public function update(UpdateStoreRequest $request, Store $store, $id)
     {
         $User = User::find($id);
         $User->update($request->all());
+        return $User;
     }
 
     /**

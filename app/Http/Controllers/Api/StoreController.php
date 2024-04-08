@@ -58,10 +58,11 @@ class StoreController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateStoreRequest $request, Store $store): void
+    public function update(UpdateStoreRequest $request, $id)
     {
+        $store = Store::find($id);
         $store->update($request->all());
-
+        return $store;
     }
 
     /**
