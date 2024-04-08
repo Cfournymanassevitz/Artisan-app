@@ -26,10 +26,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'payement adress',
+        'payment_adress',
         'phone',
         'image',
-        'Delivery adress',
+        'delivery_adress',
 
     ];
 
@@ -51,14 +51,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'id' => 'string',
     ];
     public function stores():HasMany
     {
         return $this->hasMany(Store::class);
     }
-    public function order():HasOne
+    public function orders(): HasMany
     {
-        return $this->hasOne(Order::class);
+        return $this->hasMany(Order::class);
     }
 
 }

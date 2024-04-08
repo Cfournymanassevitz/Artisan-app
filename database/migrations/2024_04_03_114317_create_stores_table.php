@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('stores', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('User_id');
+            $table->foreignUuid('user_id')->references('id')->on('users');
             $table->string('name');
             $table->string('theme');
             $table->longText('biography');

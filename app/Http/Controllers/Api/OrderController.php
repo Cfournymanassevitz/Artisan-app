@@ -14,7 +14,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        return Order::all();
     }
 
     /**
@@ -22,7 +22,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+       //
     }
 
     /**
@@ -30,38 +30,40 @@ class OrderController extends Controller
      */
     public function store(StoreOrderRequest $request)
     {
-        //
+        Order::create($request->all());
     }
 
     /**
      * Display the specified resource.
+     * @param Order $order
+     * @param $id
+     * @return mixed
      */
-    public function show(Order $order)
+    public function show(Order $order, $id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Order $order)
-    {
-        //
+        return $Order = Order::find($id);
     }
 
     /**
      * Update the specified resource in storage.
+     * @param UpdateOrderRequest $request
+     * @param Order $order
+     * @param $id
      */
-    public function update(UpdateOrderRequest $request, Order $order)
+    public function update(UpdateOrderRequest $request, Order $order, $id)
     {
-        //
+          $Order = Order::find($id);
+          $Order->update($request->all());
     }
 
     /**
      * Remove the specified resource from storage.
+     * @param Order $order
+     * @param $id
      */
-    public function destroy(Order $order)
+    public function destroy(Order $order, $id)
     {
-        //
+        $Order = Order::find($id);
+        $Order->delete();
     }
 }

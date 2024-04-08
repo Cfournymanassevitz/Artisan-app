@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreStoreRequest;
 use App\Http\Requests\UpdateStoreRequest;
 use App\Models\Store;
+use App\Models\User;
 
 class userController extends Controller
 {
@@ -14,7 +15,7 @@ class userController extends Controller
      */
     public function index()
     {
-        //
+       return User::all();
     }
 
     /**
@@ -30,7 +31,7 @@ class userController extends Controller
      */
     public function store(StoreStoreRequest $request)
     {
-        //
+        $User = User::create($request->all());
     }
 
     /**
@@ -38,30 +39,30 @@ class userController extends Controller
      */
     public function show(Store $store)
     {
-        //
+        return $User = User::find($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Store $store)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
+     * @param UpdateStoreRequest $request
+     * @param Store $store
+     * @param $id
      */
-    public function update(UpdateStoreRequest $request, Store $store)
+    public function update(UpdateStoreRequest $request, Store $store, $id)
     {
-        //
+        $User = User::find($id);
+        $User->update($request->all());
     }
 
     /**
      * Remove the specified resource from storage.
+     * @param Store $store
+     * @param $id
      */
-    public function destroy(Store $store)
+    public function destroy(Store $store, $id)
     {
-        //
+        $User = User::find($id);
+        $User->delete();
     }
 }

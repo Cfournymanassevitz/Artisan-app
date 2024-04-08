@@ -30,9 +30,7 @@ class ProductFactory extends Factory
             'color' => $this->faker->colorName,
             'size' => $this->faker->randomElement(['S', 'M', 'L', 'XL']),
             'category' => $this->faker->word,
-            'shopId' => $this->faker->uuid,
-            'created_at' => $this->faker->dateTimeBetween('-2 years', 'now'),
-            'updated_at' => $this->faker->dateTimeBetween('-2 years', 'now'),
+            'shop_id' => null
         ];
     }
 }

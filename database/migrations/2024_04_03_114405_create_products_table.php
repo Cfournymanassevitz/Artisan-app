@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('color');
             $table->string('size');
             $table->string('category');
-            $table->uuid('shopId');
+            $table->foreignUuid('shop_id')->nullable()->references('id')->on('stores');
             $table->timestamps();
 
         });

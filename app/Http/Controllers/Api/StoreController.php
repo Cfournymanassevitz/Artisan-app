@@ -14,7 +14,7 @@ class StoreController extends Controller
      */
     public function index()
     {
-        //
+        return Store::all();
     }
 
     /**
@@ -30,23 +30,18 @@ class StoreController extends Controller
      */
     public function store(StoreStoreRequest $request)
     {
-        //
+        Store::create($request->all());
     }
 
     /**
      * Display the specified resource.
+     * @param Store $store
+     * @param $id
+     * @return mixed
      */
-    public function show(Store $store)
+    public function show(Store $store, $id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Store $store)
-    {
-        //
+        return $Store = Store::find($id);
     }
 
     /**
@@ -54,14 +49,18 @@ class StoreController extends Controller
      */
     public function update(UpdateStoreRequest $request, Store $store)
     {
-        //
+        $store->update($request->all());
+
     }
 
     /**
      * Remove the specified resource from storage.
+     * @param Store $store
+     * @param $id
      */
-    public function destroy(Store $store)
+    public function destroy(Store $store, $id)
     {
-        //
+        $store = Store::find($id);
+        $store->delete();
     }
 }

@@ -25,7 +25,6 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-
             'email_verified_at' => now(),
             'id' => $this->faker->uuid,
             'pseudo' => $this->faker->userName,
@@ -33,7 +32,7 @@ class UserFactory extends Factory
             'name' => $this->faker->lastName,
             'email' => $this->faker->unique()->safeEmail,
             'password' => static::$password ??= Hash::make('password'),
-            'payement_adress' => $this->faker->address,
+            'payment_adress' => $this->faker->address,
             'phone' => $this->faker->phoneNumber,
             'image' => $this->faker->imageUrl(),
             'delivery_adress' => $this->faker->address,

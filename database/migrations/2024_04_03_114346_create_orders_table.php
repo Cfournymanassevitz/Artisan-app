@@ -13,13 +13,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('orders', function (Blueprint $table) {
-
             $table->uuid('id')->primary();
             $table->uuid('command_number');
-            $table->uuid('user_id');
+            $table->foreignUuid('user_id')->references('id')->on('users');
             $table->dateTime('created_at')->nullable();
             $table->dateTime('updated_at')->nullable();
-
         });
     }
 

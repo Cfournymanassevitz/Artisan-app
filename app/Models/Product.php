@@ -21,7 +21,7 @@ class Product extends Model
         'color',
         'size',
         'category',
-        'shopId',
+        'shop_id',
     ];
 
     use HasFactory;
