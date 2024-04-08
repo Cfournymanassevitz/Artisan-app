@@ -7,8 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
+/**
+ * @method static find($id)
+ */
 class Store extends Model
 {
+    public mixed $name;
+    public mixed $theme;
+    public mixed $biography;
     protected $fillable = [
         'id',
         'User_id',

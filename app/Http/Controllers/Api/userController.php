@@ -20,16 +20,28 @@ class userController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     * @param $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function create()
+    public function create($request)
     {
-        //
+       $request->validate([
+                'name' => 'required',
+                'email' => 'required',
+                'password' => 'required',
+            ]);
+            $User = new User();
+            $User->name = $request->input('name');
+            $User->email = $request->input('email');
+            $User->password = $request->input('password');
+            $User->save();
+            return response()->json(['message' => 'User created successfully'], 200);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreStoreRequest $request)
+    public function store(StoreStoreRequest $request): void
     {
         $User = User::create($request->all());
     }
@@ -49,7 +61,7 @@ class userController extends Controller
      * @param Store $store
      * @param $id
      */
-    public function update(UpdateStoreRequest $request, Store $store, $id)
+    public function update(UpdateStoreRequest $request, Store $store, $id): void
     {
         $User = User::find($id);
         $User->update($request->all());
@@ -60,7 +72,7 @@ class userController extends Controller
      * @param Store $store
      * @param $id
      */
-    public function destroy(Store $store, $id)
+    public function destroy(Store $store, $id): void
     {
         $User = User::find($id);
         $User->delete();

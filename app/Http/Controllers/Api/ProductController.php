@@ -15,7 +15,20 @@ class ProductController extends Controller
     {
         return Product::all();
     }
-
+    public function create($request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'price' => 'required',
+            'description' => 'required',
+        ]);
+        $product = new Product();
+        $product->name = $request->input('name');
+        $product->price = $request->input('price');
+        $product->description = $request->input('description');
+        $product->save();
+        return response()->json(['message' => 'Product created successfully'], 200);
+    }
     /**
      * Store a newly created resource in storage.
      */

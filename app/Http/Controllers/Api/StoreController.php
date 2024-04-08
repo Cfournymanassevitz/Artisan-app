@@ -19,16 +19,27 @@ class StoreController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     * @param $request
      */
-    public function create()
+    public function create($request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'theme' => 'required',
+            'biography' => 'required',
+        ]);
+        $shop = new Store();
+        $shop->name = $request->input('name');
+        $shop->theme = $request->input('theme');
+        $shop->biography = $request->input('biography');
+        $shop->save();
+        return response()->json(['message' => 'Shop created successfully'], 200);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreStoreRequest $request)
+    public function store(StoreStoreRequest $request): void
     {
         Store::create($request->all());
     }
@@ -39,7 +50,7 @@ class StoreController extends Controller
      * @param $id
      * @return mixed
      */
-    public function show(Store $store, $id)
+    public function show(Store $store, $id): mixed
     {
         return $Store = Store::find($id);
     }
@@ -47,7 +58,7 @@ class StoreController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateStoreRequest $request, Store $store)
+    public function update(UpdateStoreRequest $request, Store $store): void
     {
         $store->update($request->all());
 
@@ -58,7 +69,7 @@ class StoreController extends Controller
      * @param Store $store
      * @param $id
      */
-    public function destroy(Store $store, $id)
+    public function destroy(Store $store, $id): void
     {
         $store = Store::find($id);
         $store->delete();

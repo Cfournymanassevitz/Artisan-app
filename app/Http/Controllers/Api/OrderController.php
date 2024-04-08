@@ -19,16 +19,28 @@ class OrderController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     * @param $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function create()
+    public function create($request): \Illuminate\Http\JsonResponse
     {
-       //
+       $request->validate([
+                'product_id' => 'required',
+                'quantity' => 'required',
+                'total' => 'required',
+            ]);
+            $Order = new Order();
+            $Order->product_id = $request->input('product_id');
+            $Order->quantity = $request->input('quantity');
+            $Order->total = $request->input('total');
+            $Order->save();
+            return response()->json(['message' => 'Order created successfully'], 200);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreOrderRequest $request)
+    public function store(StoreOrderRequest $request): void
     {
         Order::create($request->all());
     }
@@ -39,7 +51,7 @@ class OrderController extends Controller
      * @param $id
      * @return mixed
      */
-    public function show(Order $order, $id)
+    public function show(Order $order, $id): mixed
     {
         return $Order = Order::find($id);
     }
@@ -50,7 +62,7 @@ class OrderController extends Controller
      * @param Order $order
      * @param $id
      */
-    public function update(UpdateOrderRequest $request, Order $order, $id)
+    public function update(UpdateOrderRequest $request, Order $order, $id): void
     {
           $Order = Order::find($id);
           $Order->update($request->all());
@@ -61,7 +73,7 @@ class OrderController extends Controller
      * @param Order $order
      * @param $id
      */
-    public function destroy(Order $order, $id)
+    public function destroy(Order $order, $id): void
     {
         $Order = Order::find($id);
         $Order->delete();

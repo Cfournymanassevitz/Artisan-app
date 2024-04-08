@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Product extends Model
 {
+    public mixed $name;
+    public mixed $price;
+    public mixed $description;
     protected $fillable = [
         'id',
         'name',

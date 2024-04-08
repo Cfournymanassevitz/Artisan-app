@@ -11,6 +11,10 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Order extends Model
 {
     use HasFactory;
+
+    public mixed $product_id;
+    public mixed $quantity;
+    public mixed $total;
     protected $fillable = [
         'id',
         'command_number',
