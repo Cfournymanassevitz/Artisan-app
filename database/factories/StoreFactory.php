@@ -8,22 +8,26 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Faker\Generator as Faker;
 
 /**
+ * @property $uuid
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Store>
  */
 class StoreFactory extends Factory
 {
     protected $model = Store::class;
+    protected $company;
+    protected $colorName;
+    protected $paragraph;
+
     public function definition(): array
     {
         return [
-            // database/factories/StoreFactory.php
-            'id' => $this->uuid,
-            'User_id' => $this->uuid,
-            'name' => $this->company,
-            'theme' => $this->colorName,
-            'biography' => $this->paragraph,
-            'created_at' => $this->dateTimeBetween('-2 years', 'now'),
-            'updated_at' => $this->dateTimeBetween('-2 years', 'now'),
+            'id' => $this->faker->uuid,
+            'user_id' => \App\Models\User::inRandomOrder()->first()->id, // select an existing user id
+            'name' => $this->faker->company,
+            'theme' => $this->faker->colorName,
+            'biography' => $this->faker->paragraph,
+            'created_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
+            'updated_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
         ];
     }
-    }
+}

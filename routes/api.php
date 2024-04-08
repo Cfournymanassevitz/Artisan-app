@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\StoreController;
+use App\Http\Controllers\Api\userController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
