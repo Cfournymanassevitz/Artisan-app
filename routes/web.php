@@ -16,6 +16,9 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/csrf', function () {
+    return csrf_token();
+});
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
