@@ -39,4 +39,9 @@ class Product extends Model
     public function stores(): HasMany {
         return $this->hasMany(Store::class);
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

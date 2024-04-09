@@ -4,6 +4,7 @@
 namespace Database\Factories;
 
 use App\Models\Store;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Faker\Generator as Faker;
 
@@ -18,16 +19,16 @@ class StoreFactory extends Factory
     protected $colorName;
     protected $paragraph;
 
-    public function definition(): array
-    {
-        return [
 
-            'user_id' => \App\Models\User::inRandomOrder()->first()->id, // select an existing user id
+    public function definition() : array
+    {
+        $userIds = User::pluck('id')->toArray();
+
+        return [
+            'user_id' => $this->faker->randomElement($userIds),
             'name' => $this->faker->company,
-            'theme' => $this->faker->colorName,
+            'theme' => $this->faker->word,
             'biography' => $this->faker->paragraph,
-            'created_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
-            'updated_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
         ];
     }
 }

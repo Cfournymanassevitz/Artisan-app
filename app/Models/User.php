@@ -11,6 +11,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+/**
+ * @method static pluck(string $string)
+ */
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;

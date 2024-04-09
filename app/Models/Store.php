@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Requests\StoreStoreRequest;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,6 +12,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 /**
  * @method static find($id)
  */
+// Dans Store.php
+
 class Store extends Model
 {
     use HasUuids;
@@ -18,14 +21,12 @@ class Store extends Model
     public mixed $theme;
     public mixed $biography;
     protected $fillable = [
-        'id',
-        'User_id',
+        'user_id',
         'name',
         'theme',
         'biography',
     ];
     use HasFactory;
-
 
     public function user(): HasOne
     {
