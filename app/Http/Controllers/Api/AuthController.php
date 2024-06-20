@@ -18,7 +18,8 @@ class AuthController extends Controller
         $registerUserData = $request->validate([
             'name' => 'required|string',
             'email' => 'required|string|email|unique:users',
-            'password' => 'required|min:8|'
+            'password' => 'required|min:8|',
+             'pseudo' => 'required|string'
         ]);
 
         # Create user
@@ -26,6 +27,7 @@ class AuthController extends Controller
             'name' => $registerUserData['name'],
             'email' => $registerUserData['email'],
             'password' => Hash::make($registerUserData['password']),
+            'pseudo' => $registerUserData['pseudo'],
         ]);
 
         # Log user
