@@ -14,7 +14,16 @@
 $app = new Illuminate\Foundation\Application(
     $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
 );
+//
+//$app->withMiddleware(function ($middleware) {
+//    $middleware->statefulApi();
+//});
+//
+//$app->withExceptions(function ($exceptions) {
+//    // Votre code ici
+//});
 
+// Le reste de votre code
 /*
 |--------------------------------------------------------------------------
 | Bind Important Interfaces
