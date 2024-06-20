@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\StoreController;
@@ -18,9 +19,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->group(function ()  {
+    Route::get('/user', [AuthController::class, 'user']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+
+// Routes for OrderController
+Route::get('/orders', [OrderController::class, 'index']);
+Route::get('/orders/{id}', [OrderController::class, 'show']);
+Route::post('/orders', [OrderController::class, 'store']);
+Route::put('/orders/{id}', [OrderController::class, 'update']);
+Route::delete('/orders/{id}', [OrderController::class, 'destroy']);
 });
+
+
+Route::post('/register',[AuthController::class,'register']);
+Route::post('/login',[AuthController::class,'login']);
+
+// Routes for ProductController
+Route::get('/products', [ProductController::class, 'index']);
+Route::get('/products/{id}', [ProductController::class, 'show']);
+
+
+// Routes for UserController
+Route::get('/users', [AuthController::class, 'index']);
+Route::get('/users/{id}', [AuthController::class, 'show']);
+Route::post('/users', [AuthController::class, 'store']);
+Route::put('/users/{id}', [AuthController::class, 'update']);
+Route::delete('/users/{id}', [AuthController::class, 'destroy']);
 
 // Routes for ProductController
 Route::get('/products', [ProductController::class, 'index']);
@@ -36,16 +61,4 @@ Route::post('/stores', [StoreController::class, 'store']);
 Route::put('/stores/{id}', [StoreController::class, 'update']);
 Route::delete('/stores/{id}', [StoreController::class, 'destroy']);
 
-// Routes for OrderController
-Route::get('/orders', [OrderController::class, 'index']);
-Route::get('/orders/{id}', [OrderController::class, 'show']);
-Route::post('/orders', [OrderController::class, 'store']);
-Route::put('/orders/{id}', [OrderController::class, 'update']);
-Route::delete('/orders/{id}', [OrderController::class, 'destroy']);
 
-// Routes for UserController
-Route::get('/users', [UserController::class, 'index']);
-Route::get('/users/{id}', [UserController::class, 'show']);
-Route::post('/users', [UserController::class, 'store']);
-Route::put('/users/{id}', [UserController::class, 'update']);
-Route::delete('/users/{id}', [UserController::class, 'destroy']);
