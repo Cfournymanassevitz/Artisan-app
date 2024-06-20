@@ -3,7 +3,8 @@
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\StoreController;
-use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\userController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,18 +18,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-
-
-
-Route::middleware('auth:sanctum')->group(function ()  {
-    Route::get('/user', [AuthController::class, 'user']);
-    Route::post('/logout', [AuthController::class, 'logout']);
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
 });
-
-
-Route::post('/register',[AuthController::class,'register']);
-Route::post('/login',[AuthController::class,'login']);
 
 // Routes for ProductController
 Route::get('/products', [ProductController::class, 'index']);
@@ -52,8 +44,8 @@ Route::put('/orders/{id}', [OrderController::class, 'update']);
 Route::delete('/orders/{id}', [OrderController::class, 'destroy']);
 
 // Routes for UserController
-Route::get('/users', [AuthController::class, 'index']);
-Route::get('/users/{id}', [AuthController::class, 'show']);
-Route::post('/users', [AuthController::class, 'store']);
-Route::put('/users/{id}', [AuthController::class, 'update']);
-Route::delete('/users/{id}', [AuthController::class, 'destroy']);
+Route::get('/users', [UserController::class, 'index']);
+Route::get('/users/{id}', [UserController::class, 'show']);
+Route::post('/users', [UserController::class, 'store']);
+Route::put('/users/{id}', [UserController::class, 'update']);
+Route::delete('/users/{id}', [UserController::class, 'destroy']);
