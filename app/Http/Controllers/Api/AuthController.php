@@ -31,13 +31,18 @@ class AuthController extends Controller
         ]);
 
         # Log user
-        $token = $user->createToken($user->name . '-AuthToken')->plainTextToken;
+        $token = $user->createToken('auth_token')->plainTextToken;;
 
         # Return response
+//        return response()->json([
+//            'message' => 'User Created',
+//            'user' => $user,
+//            'access_token' => $token,
+//        ]);
         return response()->json([
-            'message' => 'User Created',
-            'user' => $user,
             'access_token' => $token,
+            'token_type' => 'Bearer',
+            'message' => 'User Created',
         ]);
     }
 
