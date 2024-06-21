@@ -62,6 +62,11 @@ class User extends Authenticatable
         'password' => 'hashed',
         'id' => 'string',
     ];
+
+    public static function where(string $string, mixed $email)
+    {
+    }
+
     public function stores():HasMany
     {
         return $this->hasMany(Store::class);
