@@ -35,6 +35,7 @@ Route::delete('/orders/{id}', [OrderController::class, 'destroy']);
 Route::post('/register',[AuthController::class,'register']);
 Route::post('/login',[AuthController::class,'login']);
 
+
 // Routes for ProductController
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/{id}', [ProductController::class, 'show']);

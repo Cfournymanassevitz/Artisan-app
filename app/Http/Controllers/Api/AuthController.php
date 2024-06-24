@@ -21,6 +21,12 @@ class AuthController extends Controller
             'name' => 'required|string',
             'email' => 'required|string|email|unique:users',
             'password' => 'required|min:8|',
+            'first_name' => 'nullable|string',
+            'pseudo' => 'nullable|string',
+            'phone' => 'nullable|string',
+            'image' => 'nullable|string',
+            'delivery_adress' => 'nullable|string',
+            'payment_adress' => 'nullable|string',
 
         ]);
 
@@ -52,9 +58,17 @@ class AuthController extends Controller
     {
         # Check user
         $user = User::where('email', $request['email']);
+//        $user = User::where('email', $request['email'])->get();
+
+
         if (!$user || !Hash::check($request['password'], $user->password)) {
             return response()->json([
-                'message' => 'Invalid Credentials'
+
+                'message' => 'Invalid Credentials',
+                'Hash' => Hash::make($request['password']),
+                'email' => $request['password'],
+                'password' => $request['password']
+
             ], 401);
         }
 
