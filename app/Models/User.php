@@ -21,7 +21,6 @@ class User extends Authenticatable
 
     public mixed $name;
     public mixed $email;
-    public mixed $password;
 
     /**
      * The attributes that are mass assignable.
@@ -62,9 +61,9 @@ class User extends Authenticatable
         'id' => 'string',
     ];
 
-    public static function where(string $string, mixed $email)
-    {
-    }
+//    public static function where(string $string, mixed $email)
+//    {
+//    }
 
     public function stores():HasMany
     {

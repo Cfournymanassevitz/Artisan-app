@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Api;
+
 use Illuminate\Http\JsonResponse;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -56,23 +57,56 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        # Check user
-        $user = User::where('email', $request['email']);
-//        $user = User::where('email', $request['email'])->get();
-
-
-        if (!$user || !Hash::check($request['password'], $user->password)) {
+        if (!Auth::attempt($request->only('email', 'password'))) {
             return response()->json([
-
-                'message' => 'Invalid Credentials',
-                'Hash' => Hash::make($request['password']),
-                'email' => $request['password'],
-                'password' => $request['password']
-
+                'message' => 'Invalid login details'
             ], 401);
         }
 
+        $user = User::where('email', $request['email'])->firstOrFail();
 
+        $token = $user->createToken('auth_token')->plainTextToken;
+
+        return response()->json([
+            'access_token' => $token,
+            'token_type' => 'Bearer',
+        ]);
+
+//        # Check user
+//        $user = User::where('email', $request['email']);
+//        $user = User::where('email', $request['email'])->first();
+//
+//        if (!$user || !Hash::check($request['password'], $user->password)) {
+//            return response()->json([
+//
+//                'message' => 'Invalid Credentials',
+//                'Hash' => Hash::make($request['password']),
+//                'email' => $request['email'],
+//                'password' => $request['password']
+//
+//            ], 401);
+//        }
+//
+//        # Check user
+//        $query = User::where('email', $request['email']);
+//
+//        if ($query->exists()) {
+//            $user = $query->first();
+//        } else {
+//            // Handle the case where no user was found
+//            return response()->json([
+//                'message' => 'No user found with the provided email'
+//            ], 404);
+//        }
+//
+//        if (!Hash::check($request['password'], $user->password)) {
+//            return response()->json([
+//                'message' => 'Invalid Credentials',
+//                'Hash' => Hash::make($request['password']),
+//                'email' => $request['email'],
+//                'password' => $request['password']
+//            ], 401);
+//        }
         # Log user
         $token = $user->createToken($user->name . '-AuthToken')->plainTextToken;
 
