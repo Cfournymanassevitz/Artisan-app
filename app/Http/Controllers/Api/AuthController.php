@@ -8,13 +8,50 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
+
+/**
+ * @OA\Info(title="My API", version="1.0")
+ */
 class AuthController extends Controller
 {
+
+    /**
+     * @OA\Get(
+     *     path="/api/user",
+     *     @OA\Response(response="200", description="Get current user")
+     * )
+     */
     public function user(Request $request)
     {
         return $request->user();
     }
 
+    /**
+     * @OA\Post(
+     *     path="/api/register",
+     *     @OA\Response(response="200", description="Register a new user"),
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="name",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="email",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="password",
+     *                     type="string"
+     *                 ),
+     *                 example={"name": "John Doe", "email": "john@example.com", "password": "password123"}
+     *             )
+     *         )
+     *     )
+     * )
+     */
     public function register(Request $request)
     {
         # Check request data
@@ -54,7 +91,28 @@ class AuthController extends Controller
             'message' => 'User Created',
         ]);
     }
-
+    /**
+     * @OA\Post(
+     *     path="/api/login",
+     *     @OA\Response(response="200", description="Log in a user"),
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="email",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="password",
+     *                     type="string"
+     *                 ),
+     *                 example={"email": "john@example.com", "password": "password123"}
+     *             )
+     *         )
+     *     )
+     * )
+     */
     public function login(Request $request)
     {
         if (!Auth::attempt($request->only('email', 'password'))) {
@@ -117,25 +175,12 @@ class AuthController extends Controller
             'access_token' => $token,
         ]);
     }
-//    public function login(Request $request)
-//    {
-//        if (!Auth::attempt($request->only('email', 'password'))) {
-//            return response()->json([
-//                'message' => 'Invalid login details'
-//            ], 401);
-//        }
-//
-//        $user = User::where('email', $request['email'])->firstOrFail();
-//
-//        $token = $user->createToken('auth_token')->plainTextToken;
-//
-//        return response()->json([
-//            'access_token' => $token,
-//            'token_type' => 'Bearer',
-//        ]);
-//    }
-
-
+    /**
+     * @OA\Post(
+     *     path="/api/logout",
+     *     @OA\Response(response="200", description="Log out a user")
+     * )
+     */
     public function logout(Request $request)
     {
         # Delete user tokens

@@ -1,0 +1,58 @@
+openapi: 3.0.0
+info:
+  title: 'My API'
+  version: '1.0'
+paths:
+  /api/user:
+    get:
+      operationId: 961ad57987905b44ae2e2f40b82e76de
+      responses:
+        '200':
+          description: 'Get current user'
+  /api/register:
+    post:
+      operationId: 8e4e3cb7b46126f4696379d3c7eeb4ad
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+              type: object
+              example:
+                name: 'John Doe'
+                email: john@example.com
+                password: password123
+      responses:
+        '200':
+          description: 'Register a new user'
+  /api/login:
+    post:
+      operationId: 222b2625838e3c57e017987f73598fda
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              type: object
+              example:
+                email: john@example.com
+                password: password123
+      responses:
+        '200':
+          description: 'Log in a user'
+  /api/logout:
+    post:
+      operationId: ad65cbbd4e9f201619eae184a5961a98
+      responses:
+        '200':
+          description: 'Log out a user'
