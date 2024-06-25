@@ -9,12 +9,38 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *     path="/api/products",
+     *     @OA\Response(response="200", description="Get a list of products")
+     * )
      */
     public function index(): \Illuminate\Database\Eloquent\Collection
     {
         return Product::all();
     }
+
+    /**
+     * @OA\Post(
+     *     path="/api/products",
+     *     @OA\Response(response="201", description="Create a new product"),
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="name",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="description",
+     *                     type="string"
+     *                 ),
+     *                 example={"name": "Product Name", "description": "Product Description"}
+     *             )
+     *         )
+     *     )
+     * )
+     */
     public function create($request)
     {
         $request->validate([
@@ -38,15 +64,54 @@ class ProductController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * @OA\Get(
+     *     path="/api/products/{id}",
+     *     @OA\Response(response="200", description="Get a specific product"),
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     *     )
+     * )
      */
     public function show(string $id)
     {
         return $Product = Product::find($id);
     }
 
+
     /**
-     * Update the specified resource in storage.
+     * @OA\Put(
+     *     path="/api/products/{id}",
+     *     @OA\Response(response="200", description="Update a specific product"),
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     *     ),
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="name",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="description",
+     *                     type="string"
+     *                 ),
+     *                 example={"name": "Updated Product Name", "description": "Updated Product Description"}
+     *             )
+     *         )
+     *     )
+     * )
      */
     public function update(Request $request, string $id)
     {
@@ -55,8 +120,20 @@ class ProductController extends Controller
         return $Product;
     }
 
+
     /**
-     * Remove the specified resource from storage.
+     * @OA\Delete(
+     *     path="/api/products/{id}",
+     *     @OA\Response(response="200", description="Delete a specific product"),
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     *     )
+     * )
      */
     public function destroy(string $id)
     {

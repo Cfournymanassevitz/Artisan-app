@@ -175,12 +175,8 @@ class AuthController extends Controller
             'access_token' => $token,
         ]);
     }
-    /**
-     * @OA\Post(
-     *     path="/api/logout",
-     *     @OA\Response(response="200", description="Log out a user")
-     * )
-     */
+
+
     public function logout(Request $request)
     {
         # Delete user tokens
