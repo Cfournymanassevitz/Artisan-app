@@ -8,7 +8,7 @@ use App\Http\Requests\UpdateStoreRequest;
 use App\Models\Store;
 use App\Models\User;
 
-class userController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
