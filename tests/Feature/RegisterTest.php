@@ -11,6 +11,7 @@ use Tests\TestCase;
  */
 class RegisterTest extends TestCase
 {
+    use WithFaker, RefreshDatabase;
     /**
      * A basic feature test example.
      */

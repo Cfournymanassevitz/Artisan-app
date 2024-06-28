@@ -59,12 +59,6 @@ class AuthController extends Controller
             'name' => 'required|string',
             'email' => 'required|string|email|unique:users',
             'password' => 'required|min:8|',
-            'first_name' => 'nullable|string',
-            'pseudo' => 'nullable|string',
-            'phone' => 'nullable|string',
-            'image' => 'nullable|string',
-            'delivery_adress' => 'nullable|string',
-            'payment_adress' => 'nullable|string',
 
         ]);
 
