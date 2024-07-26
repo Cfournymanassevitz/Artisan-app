@@ -49,7 +49,7 @@ jobs:
           chmod 600 private_key
 
 
-          ssh -i private_key $SERVER_USER@$SERVER_IP << 'EOF'
+          ssh -i private_key campus@212.47.240.186 << 'EOF'
             cd /path/to/deployment
             docker-compose down
             docker-compose pull
