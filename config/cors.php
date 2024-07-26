@@ -19,7 +19,11 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => [env('ALLOWED_ORIGINS', ['http://localhost:5173'])],
+    'allowed_origins' => [
+        'http://localhost:5173',
+        'https://www.fourny.devlog25.le-campus.eu',
+        'https://api.fourny.devlog25.le-campus.eu',
+    ],
 
     'allowed_origins_patterns' => [],
 
