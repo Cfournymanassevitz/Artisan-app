@@ -45,13 +45,10 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
         run: |
-          # Ajout de la clé SSH
           echo "$SSH_PRIVATE_KEY" > private_key
           chmod 600 private_key
 
-          # Commandes de déploiement
-          scp -i private_key docker-compose.yml $SERVER_USER@$SERVER_IP:/path/to/deployment
-
+          ssh -i private_key $SERVER_USER@$SERVER_IP << 'EOF'
             cd /path/to/deployment
             docker-compose down
             docker-compose pull
@@ -59,5 +56,4 @@ jobs:
             exit
           EOF
 
-          # Nettoyage de la clé SSH
           rm private_key
