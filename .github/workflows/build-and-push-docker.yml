@@ -1,13 +1,13 @@
-name: Build Docker Container
+name: Build Docker Container and Deploy
 
 on:
   push:
     branches:
       - main
       - master
+
 jobs:
-  docker:
-    # Utilisation de la dernière version d'Ubuntu comme runner
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       # Checkout du repository
@@ -33,23 +33,30 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
-          context: . # Contexte de build (le répertoire courant)
-          push: true # Pousser l'image vers Docker Hub
-          tags: carolefm/back:latest # Tags de l'image
-          # Vous pouvez ajouter plus de tags si nécessaire
-          # tags: carolefm/back:latest,carolefm/back:${{ github.sha }}
+          context: .
+          push: true
+          tags: carolefm/back:latest
 
-      # Déploiement de l'application
-      - name: Deploy to server
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      # Configuration de l'agent SSH
+      - name: Set up SSH agent
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
+      # Ajouter le serveur aux hôtes connus
+      - name: Add server to known_hosts
         run: |
-          echo "$SSH_PRIVATE_KEY" > private_key
-          chmod 600 private_key
+          ssh-keyscan -H 212.47.240.186 >> ~/.ssh/known_hosts
 
+      # Copier le fichier Docker Compose vers le serveur
+      - name: Copy Docker Compose file to server
+        run: |
+          scp -rp docker-compose.yml campus@212.47.240.186:/path/to/deployment
 
-          ssh -i private_key campus@212.47.240.186 << 'EOF'
+      # Déployer l'application
+      - name: Deploy to server
+        run: |
+          ssh campus@212.47.240.186 << 'EOF'
             cd /path/to/deployment
             docker-compose down
             docker-compose pull
@@ -57,4 +64,3 @@ jobs:
             exit
           EOF
 
-          rm private_key
