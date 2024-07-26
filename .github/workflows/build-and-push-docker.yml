@@ -48,6 +48,7 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > private_key
           chmod 600 private_key
 
+
           ssh -i private_key $SERVER_USER@$SERVER_IP << 'EOF'
             cd /path/to/deployment
             docker-compose down
