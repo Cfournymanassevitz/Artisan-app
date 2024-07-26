@@ -27,7 +27,7 @@ jobs:
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.USER }}
-          password: ${{ secrets.ACCESS_TOKEN }}
+          password: ${{ secrets.ACCES_TOKEN }}
 
       # Build et push de l'image Docker
       - name: Build and push Docker image
@@ -51,7 +51,7 @@ jobs:
 
           # Commandes de déploiement
           scp -i private_key docker-compose.yml $SERVER_USER@$SERVER_IP:/path/to/deployment
-          ssh -i private_key $SERVER_USER@$SERVER_IP << 'EOF'
+
             cd /path/to/deployment
             docker-compose down
             docker-compose pull
